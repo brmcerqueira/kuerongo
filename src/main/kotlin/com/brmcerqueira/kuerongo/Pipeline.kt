@@ -55,11 +55,11 @@ class Pipeline : AbstracJsonArray {
         })
     }
 
-    infix fun group(init: Json.() -> Unit) {
-        val json = Json()
-        json.init()
+    fun group(id: IExpression, init: Group.() -> Unit) {
+        val group = Group(id)
+        group.init()
         add(Json {
-            "\$group" to json
+            "\$group" to group
         })
     }
 

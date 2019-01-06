@@ -1,6 +1,11 @@
 package com.brmcerqueira.kuerongo
 
-class Group : AbstractJson() {
+class Group(private val id: IExpression) : AbstractJson() {
+
+    init {
+        raw.set("_id", id)
+    }
+
     infix fun String.first(expression: IExpression) {
         raw.set(this, Json {
             "\$first" to expression
@@ -13,8 +18,8 @@ class Group : AbstractJson() {
         })
     }
 
-    fun String.push(init: Query.() -> Unit) {
-        val query = Query()
+    infix fun String.push(init: BlockExpression.() -> Unit) {
+        val query = BlockExpression()
         query.init()
         raw.set(this, Json {
             "\$push" to query

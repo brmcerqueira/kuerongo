@@ -1,11 +1,13 @@
 package com.brmcerqueira.kuerongo
 
-open class Query() : AbstractJson(), IExpression {
-    constructor(init: Query.() -> Unit) : this() {
+open class BlockExpression() : AbstractJson(), IExpression {
+    constructor(init: BlockExpression.() -> Unit) : this() {
         init()
     }
 
-    infix fun String.to(init: Query.() -> Unit) = set(this, Query(), init)
+    infix fun <T> String.to(value: T) = this.set(value)
+
+    infix fun String.to(init: BlockExpression.() -> Unit) = set(this, BlockExpression(), init)
 
     fun and(vararg expressions: IExpression) {
         raw.set("\$and", JsonArray().put(*expressions))
@@ -31,9 +33,9 @@ open class Query() : AbstractJson(), IExpression {
         })
     }
 
-    fun reduce(input: String, initialValue: Any, inQuery: Query.() -> Unit) {
-        val expression = Query()
-        expression.inQuery()
+    fun reduce(input: String, initialValue: Any, inBlockExpression: BlockExpression.() -> Unit) {
+        val expression = BlockExpression()
+        expression.inBlockExpression()
         raw.set("\$reduce", Json {
             "input" to input
             "initialValue" to initialValue
