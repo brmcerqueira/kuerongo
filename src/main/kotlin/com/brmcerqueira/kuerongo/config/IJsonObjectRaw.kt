@@ -1,6 +1,5 @@
 package com.brmcerqueira.kuerongo.config
 
-interface IJsonObjectRaw {
-    val isEmpty: Boolean
+interface IJsonObjectRaw : IJsonRaw {
     fun <T : Any?> set(key: String, value: T): IJsonObjectRaw
 }

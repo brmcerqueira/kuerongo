@@ -1,5 +1,7 @@
 package com.brmcerqueira.kuerongo.config
 
+import com.brmcerqueira.kuerongo.IRootJson
+
 class DefaultKuerongoProvider : IKuerongoProvider {
     override fun createJsonObject(): IJsonObjectRaw = JsonObject(::parse)
 
@@ -7,6 +9,7 @@ class DefaultKuerongoProvider : IKuerongoProvider {
 
     private fun  parse(value: Any?) : String = when (value) {
         is String -> "\"$value\""
+        is IRootJson -> value.raw.toString()
         else -> value.toString()
     }
 
