@@ -4,18 +4,18 @@ import com.brmcerqueira.kuerongo.config.KuerongoConfig
 
 @KuerongoMarker
 abstract class AbstractJson {
-    val json = KuerongoConfig.kuerongoProvider.createJsonObject()
+    val raw = KuerongoConfig.kuerongoProvider.createJsonObject()
 
     infix fun <T> String.to(value: T) {
-        json.putUsingMapper(this, value)
+        raw.set(this, value)
     }
 
     protected fun <T : AbstractJson> to(key: String, builder:T, init: T.() -> Unit) {
         builder.init()
-        if (!builder.json.isEmpty) {
-            json.putUsingMapper(key, builder.json)
+        if (!builder.raw.isEmpty) {
+            raw.set(key, builder.raw)
         }
     }
 
-    override fun toString(): String = json.toString()
+    override fun toString(): String = raw.toString()
 }
