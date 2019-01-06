@@ -7,6 +7,7 @@ object KuerongoSpek : Spek({
     describe("Testando o json") {
         println(Json {
             "name" to "value"
+            "index" to 12
         })
     }
 })

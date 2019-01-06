@@ -16,4 +16,6 @@ abstract class AbstractJson {
             json.putUsingMapper(key, builder.json)
         }
     }
+
+    override fun toString(): String = json.toString()
 }
