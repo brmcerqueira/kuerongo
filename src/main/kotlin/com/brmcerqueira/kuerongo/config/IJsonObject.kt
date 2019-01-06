@@ -1,4 +1,4 @@
-package com.brmcerqueira.kuerongo
+package com.brmcerqueira.kuerongo.config
 
 interface IJsonObject {
     val isEmpty: Boolean

@@ -1,4 +1,4 @@
 package com.brmcerqueira.kuerongo
 
 @DslMarker
-annotation class JsonMarker
+annotation class KuerongoMarker
