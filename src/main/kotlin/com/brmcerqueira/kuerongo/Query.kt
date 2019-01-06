@@ -1,19 +1,25 @@
 package com.brmcerqueira.kuerongo
 
-class Expression : AbstractJson() {
-    fun and(vararg expressions: Expression) {
+open class Query() : AbstractJson(), IExpression {
+    constructor(init: Query.() -> Unit) : this() {
+        init()
+    }
+
+    infix fun String.to(init: Query.() -> Unit) = set(this, Query(), init)
+
+    fun and(vararg expressions: IExpression) {
         raw.set("\$and", JsonArray().put(*expressions))
     }
 
-    fun or(vararg expressions: Expression) {
+    fun or(vararg expressions: IExpression) {
         raw.set("\$or", JsonArray().put(*expressions))
     }
 
-    fun setUnion(vararg expressions: Expression) {
+    fun setUnion(vararg expressions: IExpression) {
         raw.set("\$setUnion", JsonArray().put(*expressions))
     }
 
-    fun arrayElemAt(expression: String, index: Int) = raw.set("\$arrayElemAt", JsonArray().put(expression, index))
+    fun arrayElemAt(expression: IExpression, index: Int) = raw.set("\$arrayElemAt", JsonArray().put(expression, index))
 
     fun map(input: String, alias: String, into: String) = raw.set("\$map", Json {
         "input" to input
@@ -21,9 +27,9 @@ class Expression : AbstractJson() {
         "in" to into
     })
 
-    fun reduce(input: String, initialValue: Any, inExpression: Expression.() -> Unit) {
-        val expression = Expression()
-        expression.inExpression()
+    fun reduce(input: String, initialValue: Any, inQuery: Query.() -> Unit) {
+        val expression = Query()
+        expression.inQuery()
         raw.set("\$reduce", Json {
             "input" to input
             "initialValue" to initialValue

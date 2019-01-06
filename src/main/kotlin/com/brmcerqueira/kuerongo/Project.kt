@@ -9,7 +9,7 @@ class Project : AbstractJson() {
         raw.set(this, false)
     }
 
-    infix fun String.ex(init: Expression.() -> Unit) = set(this, Expression(), init)
+    infix fun String.ex(init: Query.() -> Unit) = set(this, Query(), init)
 
     infix fun String.to(init: Project.() -> Unit) = set(this, Project(), init)
 }
