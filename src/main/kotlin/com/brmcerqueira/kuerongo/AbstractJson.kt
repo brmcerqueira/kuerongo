@@ -6,7 +6,7 @@ import com.brmcerqueira.kuerongo.config.KuerongoConfig
 abstract class AbstractJson : IRootJson {
     override val raw = KuerongoConfig.kuerongoProvider.createJsonObject()
 
-    protected fun <T> String.set(value: T) {
+    protected infix fun <T> String.set(value: T) {
         raw.set(this, value)
     }
 
