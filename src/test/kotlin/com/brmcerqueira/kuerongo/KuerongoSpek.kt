@@ -6,7 +6,7 @@ import org.spekframework.spek2.style.specification.describe
 object KuerongoSpek : Spek({
     describe("Testando o raw") {
         println(Query {
-            and(eq(!"\$index", !10))
+            and(cond(!"\$index", eq(20, 10), eq(10, 10)) )
         })
     }
 })

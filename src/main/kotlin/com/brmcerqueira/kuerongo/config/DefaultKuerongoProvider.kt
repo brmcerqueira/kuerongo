@@ -7,19 +7,10 @@ class DefaultKuerongoProvider : IKuerongoProvider {
 
     override fun createJsonArray(): IJsonArrayRaw = JsonArray(::parse)
 
-    override fun createLiteral(value: Any?): IJsonRaw = Literal(parse(value))
-
     private fun parse(value: Any?) : String = when (value) {
         is String -> "\"$value\""
         is IRootJson -> value.raw.toString()
         else -> value.toString()
-    }
-
-    private class Literal(private val value: Any?) : IJsonRaw {
-        override val isEmpty: Boolean
-            get() = false
-
-        override fun toString(): String = value.toString()
     }
 
     private class JsonObject(private val parse: (Any?) -> String) : IJsonObjectRaw {
