@@ -20,7 +20,7 @@ class Pipeline : AbstracJsonArray {
     fun replaceRoot(init: Json.() -> Unit) {
         val json = Json()
         json.init()
-        privateReplaceRoot(json.raw)
+        privateReplaceRoot(json)
     }
 
     fun unwind(path: String, includeArrayIndex: String? = null, preserveNullAndEmptyArrays: Boolean? = null) {
@@ -43,15 +43,15 @@ class Pipeline : AbstracJsonArray {
         val json = Json()
         json.init()
         add(Json {
-            "\$addFields" to json.raw
+            "\$addFields" to json
         })
     }
 
-    infix fun match(init: Json.() -> Unit) {
-        val json = Json()
-        json.init()
+    infix fun match(init: Match.() -> Unit) {
+        val match = Match()
+        match.init()
         add(Json {
-            "\$match" to json.raw
+            "\$match" to match
         })
     }
 
@@ -59,7 +59,7 @@ class Pipeline : AbstracJsonArray {
         val json = Json()
         json.init()
         add(Json {
-            "\$group" to json.raw
+            "\$group" to json
         })
     }
 
@@ -67,7 +67,7 @@ class Pipeline : AbstracJsonArray {
         val project = Project()
         project.init()
         add(Json {
-            "\$project" to project.raw
+            "\$project" to project
         })
     }
 
@@ -75,7 +75,7 @@ class Pipeline : AbstracJsonArray {
         val sort = Sort()
         sort.init()
         add(Json {
-            "\$sort" to sort.raw
+            "\$sort" to sort
         })
     }
 
@@ -86,7 +86,7 @@ class Pipeline : AbstracJsonArray {
         }
 
         add(Json {
-            "\$lookup" to json.raw
+            "\$lookup" to json
         })
     }
 
@@ -99,9 +99,9 @@ class Pipeline : AbstracJsonArray {
 
     fun lookup(from: String, alias: String, pipeline: Pipeline, let: Json? = null) {
         privateLookup(from, alias, Json {
-            "pipeline" to pipeline.raw
+            "pipeline" to pipeline
             if (let != null) {
-                "let" to let.raw
+                "let" to let
             }
         })
     }

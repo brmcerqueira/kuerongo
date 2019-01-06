@@ -19,13 +19,17 @@ open class Query() : AbstractJson(), IExpression {
         raw.set("\$setUnion", JsonArray().put(*expressions))
     }
 
-    fun arrayElemAt(expression: IExpression, index: Int) = raw.set("\$arrayElemAt", JsonArray().put(expression, index))
+    fun arrayElemAt(expression: IExpression, index: Int) {
+        raw.set("\$arrayElemAt", JsonArray().put(expression, index))
+    }
 
-    fun map(input: String, alias: String, into: String) = raw.set("\$map", Json {
-        "input" to input
-        "as" to alias
-        "in" to into
-    })
+    fun map(input: String, alias: String, into: String) {
+        raw.set("\$map", Json {
+            "input" to input
+            "as" to alias
+            "in" to into
+        })
+    }
 
     fun reduce(input: String, initialValue: Any, inQuery: Query.() -> Unit) {
         val expression = Query()
