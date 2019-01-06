@@ -63,19 +63,19 @@ class Pipeline : AbstracJsonArray {
         })
     }
 
-    infix fun project(init: Json.() -> Unit) {
-        val json = Json()
-        json.init()
+    infix fun project(init: Project.() -> Unit) {
+        val project = Project()
+        project.init()
         add(Json {
-            "\$project" to json.raw
+            "\$project" to project.raw
         })
     }
 
-    fun sort(init: Json.() -> Unit) {
-        val json = Json()
-        json.init()
+    fun sort(init: Sort.() -> Unit) {
+        val sort = Sort()
+        sort.init()
         add(Json {
-            "\$sort" to json.raw
+            "\$sort" to sort.raw
         })
     }
 

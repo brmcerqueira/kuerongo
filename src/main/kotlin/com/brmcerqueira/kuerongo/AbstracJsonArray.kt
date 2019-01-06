@@ -6,5 +6,5 @@ import com.brmcerqueira.kuerongo.config.KuerongoConfig
 abstract class AbstracJsonArray {
     val raw = KuerongoConfig.kuerongoProvider.createJsonArray()
 
-    protected fun add(json: Json) = raw.add(json.raw)
+    protected fun add(json: AbstractJson) = raw.add(json.raw)
 }
