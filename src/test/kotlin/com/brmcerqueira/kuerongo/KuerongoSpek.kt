@@ -40,7 +40,7 @@ object KuerongoSpek : Spek({
             project {
                 +"password"
                 +"kind"
-                "permissions" expr {
+                "permissions" %= {
                     reduce("\$group_permissions", JsonArray()) {
                         setUnion(!"\$\$value", !"\$\$this")
                     }

@@ -9,7 +9,7 @@ class Project : AbstractJson() {
         raw.set(this, false)
     }
 
-    infix fun String.expr(init: BlockExpression.() -> Unit) = set(this, BlockExpression(), init)
+    operator fun String.remAssign(init: BlockExpression.() -> Unit) = set(this, BlockExpression(), init)
 
-    operator fun String.remAssign(init: Project.() -> Unit) = set(this, Project(), init)
+    operator fun String.plusAssign(init: Project.() -> Unit) = set(this, Project(), init)
 }
