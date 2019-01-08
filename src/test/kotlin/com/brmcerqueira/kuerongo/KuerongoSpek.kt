@@ -7,15 +7,15 @@ object KuerongoSpek : Spek({
     describe("Testando o raw") {
         println(Pipeline {
             match {
-                "email" to "brmcerqueira@gmail.com"
-                "enabled" to true
+                "email" *= "brmcerqueira@gmail.com"
+                "enabled" *= true
             }
 
             unwind("\$profiles")
 
             lookup("profile", "lookup_profiles", Pipeline {
                 match {
-                    "enabled" to true
+                    "enabled" *= true
                     expr {
                         and(eq("\$_id", "\$\$id"))
                     }
@@ -26,7 +26,7 @@ object KuerongoSpek : Spek({
                     +"permissions"
                 }
             }, Json {
-                "id" to "\$profiles"
+                "id" *= "\$profiles"
             })
 
             group(!"\$_id") {
@@ -40,7 +40,7 @@ object KuerongoSpek : Spek({
             project {
                 +"password"
                 +"kind"
-                "permissions" %= {
+                "permissions" *= expr {
                     reduce("\$group_permissions", JsonArray()) {
                         setUnion(!"\$\$value", !"\$\$this")
                     }

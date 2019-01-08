@@ -9,7 +9,13 @@ class Project : AbstractJson() {
         raw.set(this, false)
     }
 
-    operator fun String.remAssign(init: BlockExpression.() -> Unit) = set(this, BlockExpression(), init)
+    operator fun String.timesAssign(expression : String) {
+        raw.set(this, expression)
+    }
 
-    operator fun String.plusAssign(init: Project.() -> Unit) = set(this, Project(), init)
+    operator fun String.timesAssign(expression : IExpression) {
+        raw.set(this, expression)
+    }
+
+    operator fun String.timesAssign(init: Project.() -> Unit) = set(this, Project(), init)
 }

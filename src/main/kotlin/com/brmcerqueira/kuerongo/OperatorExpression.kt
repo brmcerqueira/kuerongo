@@ -1,7 +1,7 @@
 package com.brmcerqueira.kuerongo
 
-class Json() : AbstractJson() {
-    constructor(init: Json.() -> Unit) : this() {
+internal class OperatorExpression() : AbstractJson(), IExpression {
+    constructor(init: OperatorExpression.() -> Unit) : this() {
         init()
     }
 

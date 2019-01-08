@@ -8,21 +8,21 @@ class Group(private val id: IExpression) : AbstractJson() {
 
     infix fun String.first(expression: IExpression) {
         raw.set(this, Json {
-            "\$first" to expression
+            "\$first" *= expression
         })
     }
 
     infix fun String.push(expression: IExpression) {
         raw.set(this, Json {
-            "\$push" to expression
+            "\$push" *= expression
         })
     }
 
-    infix fun String.push(init: BlockExpression.() -> Unit) {
-        val query = BlockExpression()
+    infix fun String.push(init: Expression.() -> Unit) {
+        val query = Expression()
         query.init()
         raw.set(this, Json {
-            "\$push" to query
+            "\$push" *= query
         })
     }
 }

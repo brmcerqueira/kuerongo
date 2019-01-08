@@ -7,8 +7,8 @@ class Pipeline : AbstracJsonArray {
 
     private fun privateReplaceRoot(newRoot: Any) {
         add(Json {
-            "\$replaceRoot" to {
-                "newRoot" to newRoot
+            "\$replaceRoot" *= {
+                "newRoot" *= newRoot
             }
         })
     }
@@ -25,15 +25,15 @@ class Pipeline : AbstracJsonArray {
 
     fun unwind(path: String, includeArrayIndex: String? = null, preserveNullAndEmptyArrays: Boolean? = null) {
         add(Json {
-            "\$unwind" to {
-                "path" to path
+            "\$unwind" *= {
+                "path" *= path
 
                 if (!includeArrayIndex.isNullOrBlank()) {
-                    "includeArrayIndex" to includeArrayIndex
+                    "includeArrayIndex" *= includeArrayIndex
                 }
 
                 if (preserveNullAndEmptyArrays != null) {
-                    "preserveNullAndEmptyArrays" to preserveNullAndEmptyArrays
+                    "preserveNullAndEmptyArrays" *= preserveNullAndEmptyArrays
                 }
             }
         })
@@ -43,7 +43,7 @@ class Pipeline : AbstracJsonArray {
         val json = Json()
         json.init()
         add(Json {
-            "\$addFields" to json
+            "\$addFields" *= json
         })
     }
 
@@ -51,7 +51,7 @@ class Pipeline : AbstracJsonArray {
         val match = Match()
         match.init()
         add(Json {
-            "\$match" to match
+            "\$match" *= match
         })
     }
 
@@ -59,7 +59,7 @@ class Pipeline : AbstracJsonArray {
         val group = Group(id)
         group.init()
         add(Json {
-            "\$group" to group
+            "\$group" *= group
         })
     }
 
@@ -67,7 +67,7 @@ class Pipeline : AbstracJsonArray {
         val project = Project()
         project.init()
         add(Json {
-            "\$project" to project
+            "\$project" *= project
         })
     }
 
@@ -75,46 +75,46 @@ class Pipeline : AbstracJsonArray {
         val sort = Sort()
         sort.init()
         add(Json {
-            "\$sort" to sort
+            "\$sort" *= sort
         })
     }
 
     private fun privateLookup(from: String, alias: String, json: Json) {
         json.apply {
-            "from" to from
-            "as" to alias
+            "from" *= from
+            "as" *= alias
         }
 
         add(Json {
-            "\$lookup" to json
+            "\$lookup" *= json
         })
     }
 
     fun lookup(from: String, alias: String, localField: String, foreignField: String) {
         privateLookup(from, alias, Json {
-            "localField" to localField
-            "foreignField" to foreignField
+            "localField" *= localField
+            "foreignField" *= foreignField
         })
     }
 
     fun lookup(from: String, alias: String, pipeline: Pipeline, let: Json? = null) {
         privateLookup(from, alias, Json {
-            "pipeline" to pipeline
+            "pipeline" *= pipeline
             if (let != null) {
-                "let" to let
+                "let" *= let
             }
         })
     }
 
     fun limit(value: Int) {
         add(Json {
-            "\$limit" to value
+            "\$limit" *= value
         })
     }
 
     fun skip(value: Int) {
         add(Json {
-            "\$skip" to value
+            "\$skip" *= value
         })
     }
 }
