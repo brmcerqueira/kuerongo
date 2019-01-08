@@ -4,7 +4,7 @@ import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 
 object KuerongoSpek : Spek({
-    describe("Testando o raw") {
+    describe("Testando o wrapper") {
         println(Pipeline {
             match {
                 "email" *= "brmcerqueira@gmail.com"

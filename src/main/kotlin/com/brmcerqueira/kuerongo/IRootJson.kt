@@ -1,7 +1,7 @@
 package com.brmcerqueira.kuerongo
 
-import com.brmcerqueira.kuerongo.config.IJsonRaw
+import com.brmcerqueira.kuerongo.config.IJsonWrapper
 
 interface IRootJson {
-    val raw: IJsonRaw
+    val wrapper: IJsonWrapper
 }

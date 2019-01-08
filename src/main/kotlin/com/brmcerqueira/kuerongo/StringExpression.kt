@@ -1,12 +1,12 @@
 package com.brmcerqueira.kuerongo
 
-import com.brmcerqueira.kuerongo.config.IJsonRaw
+import com.brmcerqueira.kuerongo.config.IJsonWrapper
 
 class StringExpression(private val value: String) : IExpression {
-    override val raw: IJsonRaw
-        get() = StringJsonRaw(value)
+    override val wrapper: IJsonWrapper
+        get() = StringJsonWrapper(value)
 
-    private class StringJsonRaw(private val value: String) : IJsonRaw {
+    private class StringJsonWrapper(private val value: String) : IJsonWrapper {
         override val isEmpty: Boolean
             get() = false
 

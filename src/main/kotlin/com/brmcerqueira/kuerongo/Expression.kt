@@ -10,23 +10,23 @@ open class Expression() : AbstractJson(), IExpression {
     operator fun String.timesAssign(init: Expression.() -> Unit) = set(this, Expression(), init)
 
     fun and(vararg expressions: IExpression) {
-        raw.set("\$and", JsonArray().put(*expressions))
+        wrapper.set("\$and", JsonArray().put(*expressions))
     }
 
     fun or(vararg expressions: IExpression) {
-        raw.set("\$or", JsonArray().put(*expressions))
+        wrapper.set("\$or", JsonArray().put(*expressions))
     }
 
     fun setUnion(vararg expressions: IExpression) {
-        raw.set("\$setUnion", JsonArray().put(*expressions))
+        wrapper.set("\$setUnion", JsonArray().put(*expressions))
     }
 
     fun arrayElemAt(expression: IExpression, index: Int) {
-        raw.set("\$arrayElemAt", JsonArray().put(expression, index))
+        wrapper.set("\$arrayElemAt", JsonArray().put(expression, index))
     }
 
     fun map(input: String, alias: String, into: String) {
-        raw.set("\$map", Json {
+        wrapper.set("\$map", Json {
             "input" *= input
             "as" *= alias
             "in" *= into
@@ -36,7 +36,7 @@ open class Expression() : AbstractJson(), IExpression {
     fun reduce(input: String, initialValue: Any, inExpression: Expression.() -> Unit) {
         val expression = Expression()
         expression.inExpression()
-        raw.set("\$reduce", Json {
+        wrapper.set("\$reduce", Json {
             "input" *= input
             "initialValue" *= initialValue
             "in" *= expression
@@ -44,38 +44,38 @@ open class Expression() : AbstractJson(), IExpression {
     }
 
     infix fun <T> eq(value: T) {
-        raw.set("\$eq", value)
+        wrapper.set("\$eq", value)
     }
 
     infix fun <T> gt(value: T) {
-        raw.set("\$gt", value)
+        wrapper.set("\$gt", value)
     }
 
     infix fun <T> gte(value: T) {
-        raw.set("\$gte", value)
+        wrapper.set("\$gte", value)
     }
 
     fun <T> into(value: List<T>) {
-        raw.set("\$in", value)
+        wrapper.set("\$in", value)
     }
 
     infix fun regex(value: String?) {
-        raw.set("\$regex", value)
+        wrapper.set("\$regex", value)
     }
 
     infix fun <T> lt(value: T) {
-        raw.set("\$lt", value)
+        wrapper.set("\$lt", value)
     }
 
     infix fun <T> lte(value: T) {
-        raw.set("\$lte", value)
+        wrapper.set("\$lte", value)
     }
 
     infix fun <T> ne(value: T) {
-        raw.set("\$ne", value)
+        wrapper.set("\$ne", value)
     }
 
     fun <T> nin(vararg value: T) {
-        raw.set("\$nin", value)
+        wrapper.set("\$nin", value)
     }
 }

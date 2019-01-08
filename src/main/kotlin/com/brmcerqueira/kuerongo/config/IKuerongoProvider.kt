@@ -1,6 +1,6 @@
 package com.brmcerqueira.kuerongo.config
 
 interface IKuerongoProvider {
-    fun createJsonObject(): IJsonObjectRaw
-    fun createJsonArray(): IJsonArrayRaw
+    fun createJsonObject(): IJsonObjectWrapper
+    fun createJsonArray(): IJsonArrayWrapper
 }
