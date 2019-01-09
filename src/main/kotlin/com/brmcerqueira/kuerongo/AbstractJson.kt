@@ -4,7 +4,7 @@ import com.brmcerqueira.kuerongo.config.KuerongoConfig
 
 @KuerongoMarker
 abstract class AbstractJson : IRootJson {
-    override val wrapper = KuerongoConfig.kuerongoProvider.createJsonObject()
+    override val wrapper = KuerongoConfig.createJsonObject()
 
     protected infix fun <T> String.set(value: T) {
         wrapper.set(this, value)

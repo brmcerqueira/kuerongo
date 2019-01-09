@@ -1,5 +1,5 @@
 package com.brmcerqueira.kuerongo.config
 
-interface IJsonWrapper {
+interface IJsonNative {
     val isEmpty: Boolean
 }

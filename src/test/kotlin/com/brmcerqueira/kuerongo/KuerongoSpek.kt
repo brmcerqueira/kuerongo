@@ -30,8 +30,8 @@ object KuerongoSpek : Spek({
             })
 
             group(!"\$_id") {
-                "password" first !"\$password"
-                "kind" first !"\$kind"
+                "password" first "\$password"
+                "kind" first "\$kind"
                 "group_permissions" push {
                     map("\$lookup_profiles", "profile", "\$\$profile.permissions")
                 }
