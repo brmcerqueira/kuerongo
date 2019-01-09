@@ -3,7 +3,7 @@ package com.brmcerqueira.kuerongo.wrappers
 import com.brmcerqueira.kuerongo.IRootJson
 
 abstract class JsonWrapper<T : IJsonNativeWrapper> internal constructor(protected val protectedNative: T) : IJsonWrapper {
-    val isEmpty: Boolean
+    internal val isEmpty: Boolean
         get() = protectedNative.isEmpty
 
     protected fun parse(value: Any?) : Any? = when (value) {
