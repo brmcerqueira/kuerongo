@@ -1,6 +1,9 @@
 package com.brmcerqueira.kuerongo.config
 
+import com.brmcerqueira.kuerongo.config.wrappers.IJsonArrayNativeWrapper
+import com.brmcerqueira.kuerongo.config.wrappers.IJsonObjectNativeWrapper
+
 interface IKuerongoProvider {
-    fun createJsonObject(): IJsonObjectNative
-    fun createJsonArray(): IJsonArrayNative
+    fun createJsonObject(): IJsonObjectNativeWrapper
+    fun createJsonArray(): IJsonArrayNativeWrapper
 }

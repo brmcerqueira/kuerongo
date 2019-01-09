@@ -1,9 +1,14 @@
 package com.brmcerqueira.kuerongo.config
 
+import com.brmcerqueira.kuerongo.config.wrappers.IJsonArrayNativeWrapper
+import com.brmcerqueira.kuerongo.config.wrappers.IJsonObjectNativeWrapper
 
 class DefaultKuerongoProvider : IKuerongoProvider {
-    override fun createJsonObject(): IJsonObjectNative = object : IJsonObjectNative {
+    override fun createJsonObject(): IJsonObjectNativeWrapper = object : IJsonObjectNativeWrapper {
         private val stringBuilder = StringBuilder()
+
+        override val raw: Any
+            get() = toString()
 
         override val isEmpty: Boolean
             get() = stringBuilder.isEmpty()
@@ -16,11 +21,14 @@ class DefaultKuerongoProvider : IKuerongoProvider {
         override fun toString(): String = "{$stringBuilder}"
     }
 
-    override fun createJsonArray(): IJsonArrayNative = object : IJsonArrayNative {
+    override fun createJsonArray(): IJsonArrayNativeWrapper = object : IJsonArrayNativeWrapper {
         private val stringBuilder = StringBuilder()
 
+        override val raw: Any
+            get() = toString()
+
         override val isEmpty: Boolean
-        get() = stringBuilder.isEmpty()
+            get() = stringBuilder.isEmpty()
 
         override fun <T> add(value: T) {
             if (stringBuilder.isNotEmpty()) stringBuilder.append(",")

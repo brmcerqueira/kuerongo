@@ -1,10 +1,8 @@
 package com.brmcerqueira.kuerongo.config.wrappers
 
-import com.brmcerqueira.kuerongo.config.IJsonObjectNative
-
-class JsonObjectWrapper internal constructor(private val delegate: IJsonObjectNative) : JsonWrapper(delegate) {
+class JsonObjectWrapper internal constructor(native: IJsonObjectNativeWrapper) : JsonWrapper<IJsonObjectNativeWrapper>(native) {
     internal fun <T> set(key: String, value: T): JsonObjectWrapper {
-        delegate.set(key, parse(value))
+        protectedNative.set(key, parse(value))
         return this
     }
 }

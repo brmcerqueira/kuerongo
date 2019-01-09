@@ -1,6 +1,6 @@
 package com.brmcerqueira.kuerongo
 
-class Pipeline : AbstracJsonArray {
+class Pipeline : AbstractJsonArray {
     constructor(init: Pipeline.() -> Unit) {
         init()
     }

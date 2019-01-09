@@ -1,11 +1,10 @@
 package com.brmcerqueira.kuerongo
 
 import com.brmcerqueira.kuerongo.config.KuerongoConfig
+import com.brmcerqueira.kuerongo.config.wrappers.JsonObjectWrapper
 
 @KuerongoMarker
-abstract class AbstractJson : IRootJson {
-    override val wrapper = KuerongoConfig.createJsonObject()
-
+abstract class AbstractJson : AbstractRoot<JsonObjectWrapper>(KuerongoConfig.createJsonObject()) {
     protected infix fun <T> String.set(value: T) {
         wrapper.set(this, value)
     }

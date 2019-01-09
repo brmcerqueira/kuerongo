@@ -1,3 +1,5 @@
 package com.brmcerqueira.kuerongo.config.wrappers
 
-interface IJsonWrapper
+interface IJsonWrapper {
+    val nativeWrapper: IJsonNativeWrapper
+}
