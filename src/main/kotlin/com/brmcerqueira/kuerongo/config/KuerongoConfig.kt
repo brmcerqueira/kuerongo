@@ -1,7 +1,7 @@
 package com.brmcerqueira.kuerongo.config
 
-import com.brmcerqueira.kuerongo.config.wrappers.JsonArrayWrapper
-import com.brmcerqueira.kuerongo.config.wrappers.JsonObjectWrapper
+import com.brmcerqueira.kuerongo.wrappers.JsonArrayWrapper
+import com.brmcerqueira.kuerongo.wrappers.JsonObjectWrapper
 import java.lang.UnsupportedOperationException
 
 class KuerongoConfig {

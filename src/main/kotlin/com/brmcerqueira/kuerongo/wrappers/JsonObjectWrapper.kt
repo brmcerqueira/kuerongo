@@ -1,4 +1,4 @@
-package com.brmcerqueira.kuerongo.config.wrappers
+package com.brmcerqueira.kuerongo.wrappers
 
 class JsonObjectWrapper internal constructor(native: IJsonObjectNativeWrapper) : JsonWrapper<IJsonObjectNativeWrapper>(native) {
     internal fun <T> set(key: String, value: T): JsonObjectWrapper {

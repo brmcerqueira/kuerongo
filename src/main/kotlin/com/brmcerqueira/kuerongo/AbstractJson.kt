@@ -1,7 +1,7 @@
 package com.brmcerqueira.kuerongo
 
 import com.brmcerqueira.kuerongo.config.KuerongoConfig
-import com.brmcerqueira.kuerongo.config.wrappers.JsonObjectWrapper
+import com.brmcerqueira.kuerongo.wrappers.JsonObjectWrapper
 
 @KuerongoMarker
 abstract class AbstractJson : AbstractRoot<JsonObjectWrapper>(KuerongoConfig.createJsonObject()) {

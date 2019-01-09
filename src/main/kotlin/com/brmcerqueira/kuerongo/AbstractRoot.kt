@@ -1,6 +1,6 @@
 package com.brmcerqueira.kuerongo
 
-import com.brmcerqueira.kuerongo.config.wrappers.IJsonWrapper
+import com.brmcerqueira.kuerongo.wrappers.IJsonWrapper
 
 abstract class AbstractRoot<T : IJsonWrapper>(protected val wrapper: T) : IRootJson {
     @Suppress("UNCHECKED_CAST")

@@ -1,4 +1,4 @@
-package com.brmcerqueira.kuerongo.config.wrappers
+package com.brmcerqueira.kuerongo.wrappers
 
 interface IJsonArrayNativeWrapper : IJsonNativeWrapper {
     fun <T : Any?> add(value: T)
