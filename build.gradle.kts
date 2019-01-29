@@ -6,7 +6,7 @@ val kotlinVersion = "1.2.61"
 val spekVersion = "2.0.0-rc.1"
 
 plugins {
-    application
+    `maven-publish`
     kotlin("jvm") version "1.2.61"
 }
 
@@ -32,6 +32,21 @@ repositories {
     mavenCentral()
 }
 
+val sourcesJar by tasks.registering(Jar::class) {
+    classifier = "sources"
+    from(sourceSets.main.get().allSource)
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            from(components["java"])
+            artifact(sourcesJar.get())
+        }
+    }
+}
+
+/*
 tasks.withType<Test> {
     useJUnitPlatform {
         includeEngines("spek2")
@@ -39,4 +54,4 @@ tasks.withType<Test> {
     testLogging {
         events("passed", "skipped", "failed")
     }
-}
+}*/
