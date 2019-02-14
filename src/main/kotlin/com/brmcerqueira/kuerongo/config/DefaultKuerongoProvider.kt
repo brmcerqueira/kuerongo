@@ -4,6 +4,12 @@ import com.brmcerqueira.kuerongo.wrappers.IJsonArrayNativeWrapper
 import com.brmcerqueira.kuerongo.wrappers.IJsonObjectNativeWrapper
 
 class DefaultKuerongoProvider : IKuerongoProvider {
+
+    private fun <T> parse(value: T) : Any? = when (value) {
+        is String -> "\"$value\""
+        else -> value
+    }
+
     override fun createJsonObject(): IJsonObjectNativeWrapper = object : IJsonObjectNativeWrapper {
         private val stringBuilder = StringBuilder()
 
@@ -15,7 +21,7 @@ class DefaultKuerongoProvider : IKuerongoProvider {
 
         override fun <T> set(key: String, value: T) {
             if (stringBuilder.isNotEmpty()) stringBuilder.append(",")
-            stringBuilder.append("\"$key\":$value")
+            stringBuilder.append("\"$key\":${parse(value)}")
         }
 
         override fun toString(): String = "{$stringBuilder}"
@@ -32,7 +38,7 @@ class DefaultKuerongoProvider : IKuerongoProvider {
 
         override fun <T> add(value: T) {
             if (stringBuilder.isNotEmpty()) stringBuilder.append(",")
-            stringBuilder.append(value)
+            stringBuilder.append(parse(value))
         }
 
         override fun toString(): String = "[$stringBuilder]"

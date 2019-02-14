@@ -7,7 +7,6 @@ abstract class JsonWrapper<T : IJsonNativeWrapper> internal constructor(protecte
         get() = protectedNative.isEmpty
 
     protected fun parse(value: Any?) : Any? = when (value) {
-        is String -> "\"$value\""
         is IRootJson -> value.raw()
         else -> value
     }
