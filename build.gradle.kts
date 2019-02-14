@@ -61,7 +61,7 @@ bintray {
         vcsUrl = "https://github.com/brmcerqueira/kuerongo.git"
     })
 }
-
+/*
 tasks.withType<Test> {
     useJUnitPlatform {
         includeEngines("spek2")
@@ -69,4 +69,4 @@ tasks.withType<Test> {
     testLogging {
         events("passed", "skipped", "failed")
     }
-}
+}*/
