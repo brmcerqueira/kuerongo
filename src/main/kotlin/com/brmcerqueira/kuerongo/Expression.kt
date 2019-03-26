@@ -43,6 +43,12 @@ open class Expression() : AbstractJson(), IExpression {
         })
     }
 
+    infix fun geoWithin(init: GeoWithin.() -> Unit) {
+        val geoWithin = GeoWithin()
+        geoWithin.init()
+        wrapper.set("\$geoWithin", geoWithin)
+    }
+
     infix fun <T> eq(value: T) {
         wrapper.set("\$eq", value)
     }

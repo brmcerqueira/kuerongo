@@ -9,6 +9,11 @@ object KuerongoSpek : Spek({
             match {
                 "email" *= "brmcerqueira@gmail.com"
                 "enabled" *= true
+                "location" *= {
+                    geoWithin {
+                        centerSphere(-27.6343625, -48.4582849 , 5 / 3963.2)
+                    }
+                }
             }
 
             unwind("\$profiles")
