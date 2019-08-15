@@ -106,6 +106,28 @@ class Pipeline : AbstractJsonArray {
         })
     }
 
+    fun graphLookup(from: String, alias: String, connectFromField: String, connectToField: String, startWith: IExpression,
+                    maxDepth: Int? = null, depthField: String? = null, restrictSearchWithMatch: Json? = null) {
+        add(Json {
+            "\$graphLookup" *= Json {
+                "from" *= from
+                "as" *= alias
+                "connectFromField" *= connectFromField
+                "connectToField" *= connectToField
+                "startWith" *= startWith
+                if (maxDepth != null) {
+                    "maxDepth" *= maxDepth
+                }
+                if (depthField != null) {
+                    "depthField" *= depthField
+                }
+                if (restrictSearchWithMatch != null) {
+                    "restrictSearchWithMatch" *= restrictSearchWithMatch
+                }
+            }
+        })
+    }
+
     fun limit(value: Int) {
         add(Json {
             "\$limit" *= value
