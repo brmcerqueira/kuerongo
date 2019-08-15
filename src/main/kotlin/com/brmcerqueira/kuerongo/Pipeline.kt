@@ -55,7 +55,9 @@ class Pipeline : AbstractJsonArray {
         })
     }
 
-    fun group(id: IExpression, init: Group.() -> Unit) {
+    fun group(init: Group.() -> Unit) = group(null, init)
+
+    fun group(id: IExpression?, init: Group.() -> Unit) {
         val group = Group(id)
         group.init()
         add(Json {

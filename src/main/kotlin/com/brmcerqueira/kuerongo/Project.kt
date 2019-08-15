@@ -9,11 +9,7 @@ class Project : AbstractJson() {
         wrapper.set(this, false)
     }
 
-    operator fun String.timesAssign(expression : String) {
-        wrapper.set(this, expression)
-    }
-
-    operator fun String.timesAssign(expression : IExpression) {
+    operator fun String.timesAssign(expression: Any) {
         wrapper.set(this, expression)
     }
 
