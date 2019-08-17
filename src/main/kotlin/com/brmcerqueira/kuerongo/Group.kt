@@ -6,9 +6,7 @@ class Group(private val id: IExpression?) : AbstractJson() {
         wrapper.set("_id", id)
     }
 
-    infix fun String.first(expression: String) = this.first(!expression)
-
-    infix fun String.first(expression: IExpression) {
+    infix fun String.first(expression: Any) {
         wrapper.set(this, Json {
             "\$first" *= expression
         })
@@ -23,8 +21,6 @@ class Group(private val id: IExpression?) : AbstractJson() {
             "\$sum" *= if (expressions.size == 1) expressions.first() else JsonArray().put(*expressions)
         })
     }
-
-    infix fun String.push(expression: String) = this.push(!expression)
 
     infix fun String.push(expression: IExpression) {
         wrapper.set(this, Json {

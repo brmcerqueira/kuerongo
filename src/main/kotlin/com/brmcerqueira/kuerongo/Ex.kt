@@ -25,7 +25,7 @@ open class Ex() : AbstractJson(), IExpression {
         wrapper.set("\$arrayElemAt", JsonArray().put(expression, index))
     }
 
-    fun map(input: String, alias: String, into: String) {
+    fun map(input: IExpression, alias: String, into: IExpression) {
         wrapper.set("\$map", Json {
             "input" *= input
             "as" *= alias
@@ -33,7 +33,7 @@ open class Ex() : AbstractJson(), IExpression {
         })
     }
 
-    fun reduce(input: String, initialValue: Any, inExpression: Ex.() -> Unit) {
+    fun reduce(input: IExpression, initialValue: Any, inExpression: Ex.() -> Unit) {
         val expression = Ex()
         expression.inExpression()
         wrapper.set("\$reduce", Json {

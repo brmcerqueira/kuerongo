@@ -23,7 +23,7 @@ class Pipeline : AbstractJsonArray {
         privateReplaceRoot(json)
     }
 
-    fun unwind(path: String, includeArrayIndex: String? = null, preserveNullAndEmptyArrays: Boolean? = null) {
+    fun unwind(path: IExpression, includeArrayIndex: String? = null, preserveNullAndEmptyArrays: Boolean? = null) {
         add(Json {
             "\$unwind" *= {
                 "path" *= path

@@ -16,29 +16,29 @@ object KuerongoSpek : Spek({
                 }
             }
 
-            unwind("\$profiles")
+            unwind(!"profiles")
 
             lookup("profile", "lookup_profiles", Pipeline {
                 match {
                     "enabled" *= true
                     expr {
-                        and(eq("\$_id", "\$\$id"))
+                        and(eq(!"_id", !!"id"))
                     }
                 }
-                unwind("\$permissions")
+                unwind(!"permissions")
                 project {
                     -"_id"
                     +"permissions"
                 }
             }, Json {
-                "id" *= "\$profiles"
+                "id" *= !"profiles"
             })
 
-            group(!"\$_id") {
-                "password" first "\$password"
-                "kind" first "\$kind"
+            group(!"_id") {
+                "password" first !"password"
+                "kind" first !"kind"
                 "group_permissions" push {
-                    map("\$lookup_profiles", "profile", "\$\$profile.permissions")
+                    map(!"lookup_profiles", "profile", !!"profile" / "permissions")
                 }
             }
 
@@ -46,8 +46,8 @@ object KuerongoSpek : Spek({
                 +"password"
                 +"kind"
                 "permissions" *= Ex {
-                    reduce("\$group_permissions", JsonArray()) {
-                        setUnion(!"\$\$value", !"\$\$this")
+                    reduce(!"group_permissions", JsonArray()) {
+                        setUnion(!!"value", !!"this")
                     }
                 }
             }
