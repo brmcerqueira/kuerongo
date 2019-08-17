@@ -1,10 +1,10 @@
 package com.brmcerqueira.kuerongo
 
-import org.spekframework.spek2.Spek
-import org.spekframework.spek2.style.specification.describe
+import org.junit.jupiter.api.Test
 
-object KuerongoSpek : Spek({
-    describe("Testando o wrapper") {
+class KuerongoTest {
+    @Test
+    fun basic() {
         println(Pipeline {
             match {
                 "email" *= "brmcerqueira@gmail.com"
@@ -53,4 +53,4 @@ object KuerongoSpek : Spek({
             }
         })
     }
-})
+}

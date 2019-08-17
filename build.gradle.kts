@@ -1,10 +1,9 @@
 import com.jfrog.bintray.gradle.BintrayExtension
 
 group = "com.brmcerqueira"
-version = "1.0.6"
-
+version = "1.0.7"
 val kotlinVersion = "1.2.61"
-val spekVersion = "2.0.0-rc.1"
+val spekVersion = "2.0.6"
 
 plugins {
     `maven-publish`
@@ -12,26 +11,17 @@ plugins {
     id("com.jfrog.bintray") version "1.8.1"
 }
 
-dependencies {
-    compile(kotlin("stdlib"))
-
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
-
-    testImplementation("org.spekframework.spek2:spek-dsl-jvm:$spekVersion")  {
-        exclude("org.jetbrains.kotlin")
-    }
-
-    testRuntimeOnly("org.spekframework.spek2:spek-runner-junit5:$spekVersion") {
-        exclude("org.junit.platform")
-        exclude("org.jetbrains.kotlin")
-    }
-
-    testRuntimeOnly("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
-}
-
 repositories {
     jcenter()
     mavenCentral()
+}
+
+dependencies {
+    compile(kotlin("stdlib"))
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
+    testRuntimeOnly("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.2.0")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.2.0")
 }
 
 val sourcesJar by tasks.registering(Jar::class) {
@@ -61,12 +51,12 @@ bintray {
         vcsUrl = "https://github.com/brmcerqueira/kuerongo.git"
     })
 }
-/*
+
 tasks.withType<Test> {
     useJUnitPlatform {
-        includeEngines("spek2")
+        includeEngines("junit-jupiter")
     }
     testLogging {
         events("passed", "skipped", "failed")
     }
-}*/
+}

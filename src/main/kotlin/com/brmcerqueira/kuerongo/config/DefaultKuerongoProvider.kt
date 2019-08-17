@@ -14,7 +14,7 @@ class DefaultKuerongoProvider : IKuerongoProvider {
         private val stringBuilder = StringBuilder()
 
         override val raw: Any
-            get() = toString()
+            get() = this
 
         override val isEmpty: Boolean
             get() = stringBuilder.isEmpty()
@@ -31,7 +31,7 @@ class DefaultKuerongoProvider : IKuerongoProvider {
         private val stringBuilder = StringBuilder()
 
         override val raw: Any
-            get() = toString()
+            get() = this
 
         override val isEmpty: Boolean
             get() = stringBuilder.isEmpty()
