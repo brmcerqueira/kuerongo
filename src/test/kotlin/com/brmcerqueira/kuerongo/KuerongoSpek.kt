@@ -22,7 +22,7 @@ object KuerongoSpek : Spek({
                 match {
                     "enabled" *= true
                     expr {
-                        and(Ex.eq("\$_id", "\$\$id"))
+                        and(eq("\$_id", "\$\$id"))
                     }
                 }
                 unwind("\$permissions")
@@ -45,7 +45,7 @@ object KuerongoSpek : Spek({
             project {
                 +"password"
                 +"kind"
-                "permissions" *= Ex.new {
+                "permissions" *= Ex {
                     reduce("\$group_permissions", JsonArray()) {
                         setUnion(!"\$\$value", !"\$\$this")
                     }
