@@ -22,7 +22,7 @@ class KuerongoTest {
                 match {
                     "enabled" *= true
                     expr {
-                        and(eq(!"_id", !!"id"))
+                        and(Op.eq(!"_id", !!"id"))
                     }
                 }
                 unwind(!"permissions")
