@@ -1,6 +1,10 @@
 package com.brmcerqueira.kuerongo
 
-class Project : AbstractJson() {
+class Project() : AbstractJson() {
+    constructor(init: Project.() -> Unit) : this() {
+        init()
+    }
+
     operator fun String.unaryPlus() {
         wrapper.set(this, true)
     }

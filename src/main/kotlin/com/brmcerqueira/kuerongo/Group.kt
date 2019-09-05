@@ -29,10 +29,8 @@ class Group(private val id: IExpression?) : AbstractJson() {
     }
 
     infix fun String.push(init: Ex.() -> Unit) {
-        val query = Ex()
-        query.init()
         wrapper.set(this, Json {
-            "\$push" *= query
+            "\$push" *= Ex(init)
         })
     }
 }

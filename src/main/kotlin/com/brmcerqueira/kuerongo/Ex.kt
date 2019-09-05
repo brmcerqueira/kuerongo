@@ -49,6 +49,17 @@ open class Ex() : AbstractJson(), IExpression {
         wrapper.set("\$geoWithin", geoWithin)
     }
 
+    fun text(search: String, caseSensitive: Boolean = false, diacriticSensitive: Boolean = false, language: String? = null) {
+        wrapper.set("\$text", Json {
+            "\$search" *= search
+            "\$caseSensitive" *= caseSensitive
+            "\$diacriticSensitive"*= diacriticSensitive
+            if (language != null) {
+                "\$language"*= language
+            }
+        })
+    }
+
     infix fun <T> eq(value: T) {
         wrapper.set("\$eq", value)
     }
@@ -62,6 +73,10 @@ open class Ex() : AbstractJson(), IExpression {
     }
 
     fun <T> into(value: List<T>) {
+        wrapper.set("\$in", value)
+    }
+
+    fun <T> varargInto(vararg value: T) {
         wrapper.set("\$in", value)
     }
 
@@ -81,7 +96,11 @@ open class Ex() : AbstractJson(), IExpression {
         wrapper.set("\$ne", value)
     }
 
-    fun <T> nin(vararg value: T) {
+    fun <T> nin(value: List<T>) {
+        wrapper.set("\$nin", value)
+    }
+
+    fun <T> varargNin(vararg value: T) {
         wrapper.set("\$nin", value)
     }
 }
