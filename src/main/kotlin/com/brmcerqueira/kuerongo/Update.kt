@@ -5,8 +5,6 @@ class Update() : AbstractJson() {
         init()
     }
 
-    operator fun <T> String.timesAssign(value: T) = this.set(value)
-
     fun inc(init: Json.() -> Unit) {
         wrapper.set("\$inc", Json(init))
     }
