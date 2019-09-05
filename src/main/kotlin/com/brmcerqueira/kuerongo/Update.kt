@@ -25,8 +25,12 @@ class Update() : AbstractJson() {
         wrapper.set("\$rename", Json(init))
     }
 
+    fun set(json: Json) {
+        wrapper.set("\$set", json)
+    }
+
     fun set(init: Json.() -> Unit) {
-        wrapper.set("\$set", Json(init))
+        set(Json(init))
     }
 
     fun setOnInsert(init: Json.() -> Unit) {
