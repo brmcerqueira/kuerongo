@@ -5,9 +5,7 @@ class Push() : AbstractJson() {
         init()
     }
 
-    operator fun String.timesAssign(expression: Any) {
-        wrapper.set(this, expression)
-    }
+    operator fun <T> String.timesAssign(value: T) = this.set(value)
 
     operator fun String.timesAssign(init: PushField.() -> Unit) = set(this, PushField(), init)
 }
