@@ -1,6 +1,10 @@
 package com.brmcerqueira.kuerongo
 
-class Sort : AbstractJson() {
+class Sort() : AbstractJson() {
+    constructor(init: Sort.() -> Unit) : this() {
+        init()
+    }
+
     operator fun String.unaryPlus() {
         wrapper.set(this, 1)
     }

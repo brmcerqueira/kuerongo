@@ -74,10 +74,8 @@ class Pipeline : AbstractJsonArray {
     }
 
     fun sort(init: Sort.() -> Unit) {
-        val sort = Sort()
-        sort.init()
         add(Json {
-            "\$sort" *= sort
+            "\$sort" *= Sort(init)
         })
     }
 

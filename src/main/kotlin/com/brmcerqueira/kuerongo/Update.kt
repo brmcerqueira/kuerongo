@@ -44,4 +44,8 @@ class Update() : AbstractJson() {
     fun currentDate(init: CurrentDate.() -> Unit) {
         wrapper.set("\$currentDate", CurrentDate(init))
     }
+
+    fun push(init: Push.() -> Unit) {
+        wrapper.set("\$push", Push(init))
+    }
 }
