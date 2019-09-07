@@ -20,4 +20,12 @@ object Op {
             "else" *= falseResult
         }
     }
+
+    fun size(expression: IExpression): IExpression = OperatorExpression {
+        "\$size" *= expression
+    }
+
+    fun arrayElemAt(expression: IExpression, index: Int): IExpression = OperatorExpression {
+        "\$size" *= JsonArray().put(expression, index)
+    }
 }

@@ -21,10 +21,6 @@ open class Ex() : AbstractJson(), IExpression {
         wrapper.set("\$setUnion", JsonArray().put(*expressions))
     }
 
-    fun arrayElemAt(expression: IExpression, index: Int) {
-        wrapper.set("\$arrayElemAt", JsonArray().put(expression, index))
-    }
-
     fun map(input: IExpression, alias: String, into: IExpression) {
         wrapper.set("\$map", Json {
             "input" *= input
