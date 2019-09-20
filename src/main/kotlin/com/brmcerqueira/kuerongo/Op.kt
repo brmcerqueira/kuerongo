@@ -49,7 +49,7 @@ object Op {
         "\$size" *= expression
     }
 
-    fun arrayElemAt(expression: IExpression, index: Int): IExpression = OperatorExpression {
-        "\$size" *= JsonArray().put(expression, index)
+    fun arrayElemAt(expression: Any, index: Int): IExpression = OperatorExpression {
+        "\$arrayElemAt" *= JsonArray().put(expression, index)
     }
 }
