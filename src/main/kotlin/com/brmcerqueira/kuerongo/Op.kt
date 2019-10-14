@@ -52,4 +52,14 @@ object Op {
     fun arrayElemAt(expression: Any, index: Int): IExpression = OperatorExpression {
         "\$arrayElemAt" *= JsonArray().put(expression, index)
     }
+
+    fun filter(input: Any, conditionExpression: IExpression, alias: String? = null): IExpression = OperatorExpression {
+        "\$filter" *= Json {
+            "input" *= input
+            "cond" *= conditionExpression
+            if (alias != null) {
+                "as" *= alias
+            }
+        }
+    }
 }
