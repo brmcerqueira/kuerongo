@@ -76,8 +76,11 @@ open class Ex() : AbstractJson(), IExpression {
         wrapper.set("\$in", value)
     }
 
-    infix fun regex(value: String?) {
+    fun regex(value: String, options: String? = null) {
         wrapper.set("\$regex", value)
+        if (options != null) {
+            wrapper.set("\$options", options)
+        }
     }
 
     infix fun <T> lt(value: T) {
