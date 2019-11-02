@@ -5,22 +5,12 @@ class Pipeline : AbstractJsonArray {
         init()
     }
 
-    private fun privateReplaceRoot(newRoot: Any) {
+    fun replaceRoot(newRoot: IExpression) {
         add(Json {
             "\$replaceRoot" *= {
                 "newRoot" *= newRoot
             }
         })
-    }
-
-    fun replaceRoot(newRoot: String) {
-        privateReplaceRoot(newRoot)
-    }
-
-    fun replaceRoot(init: Json.() -> Unit) {
-        val json = Json()
-        json.init()
-        privateReplaceRoot(json)
     }
 
     fun unwind(path: IExpression, includeArrayIndex: String? = null, preserveNullAndEmptyArrays: Boolean? = null) {
