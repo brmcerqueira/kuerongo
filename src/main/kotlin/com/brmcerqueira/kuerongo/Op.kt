@@ -62,4 +62,14 @@ object Op {
             }
         }
     }
+
+    fun concatArrays(vararg expressions: Any): IExpression = OperatorExpression {
+        "\$concatArrays" *= JsonArray().put(*expressions)
+    }
+
+    fun replaceRoot(newRoot: IExpression): IExpression = OperatorExpression {
+        "\$replaceRoot" *= Json {
+            "newRoot" *= newRoot
+        }
+    }
 }
