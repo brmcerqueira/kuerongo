@@ -12,6 +12,18 @@ class Group(private val id: IExpression?) : AbstractJson() {
         })
     }
 
+    infix fun String.min(expression: Any) {
+        wrapper.set(this, Json {
+            "\$min" *= expression
+        })
+    }
+
+    infix fun String.max(expression: Any) {
+        wrapper.set(this, Json {
+            "\$max" *= expression
+        })
+    }
+
     infix fun String.sum(expression: Any) = this.privateSum(expression)
 
     infix fun String.sum(expressions: Array<Any>) = this.privateSum(*expressions)

@@ -1,7 +1,7 @@
 import com.jfrog.bintray.gradle.BintrayExtension
 
 group = "com.brmcerqueira"
-version = "1.0.21"
+version = "1.0.22"
 val kotlinVersion = "1.2.61"
 
 plugins {
