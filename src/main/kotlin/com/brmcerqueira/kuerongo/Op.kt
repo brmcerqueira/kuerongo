@@ -66,4 +66,8 @@ object Op {
     fun concatArrays(vararg expressions: Any): IExpression = OperatorExpression {
         "\$concatArrays" *= JsonArray().put(*expressions)
     }
+
+    fun add(vararg expressions: Any): IExpression = OperatorExpression {
+        "\$add" *= JsonArray().put(*expressions)
+    }
 }
