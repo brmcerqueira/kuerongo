@@ -76,6 +76,10 @@ open class Ex() : AbstractJson(), IExpression {
         wrapper.set("\$in", value)
     }
 
+    fun concat(vararg value: Any) {
+        wrapper.set("\$concat", value)
+    }
+
     fun regex(value: String, options: String? = null) {
         wrapper.set("\$regex", value)
         if (options != null) {
